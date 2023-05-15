@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/ui/styles/text_styles.dart';
+
 class PaymentTypeItem extends StatelessWidget {
   const PaymentTypeItem({super.key});
 
@@ -18,13 +20,22 @@ class PaymentTypeItem extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            const Column(
+            Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Forma de Pagamento'),
-                Text('Cartão de Crédito'),
+                Text(
+                  'Forma de Pagamento',
+                  style: context.textStyles.textRegular,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Cartão de Crédito',
+                  style: context.textStyles.textTitle,
+                ),
               ],
             ),
             Expanded(
