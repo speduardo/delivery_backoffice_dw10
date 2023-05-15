@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -19,7 +20,7 @@ class _PaymentTypePageState extends State<PaymentTypePage>
     with Loader, Messages {
   final controller = Modular.get<PaymentTypeController>();
 
-  final disposer = <ReactionDisposer>[];
+  final disposers = <ReactionDisposer>[];
 
   @override
   void initState() {
@@ -43,6 +44,8 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             break;
         }
       });
+      disposers.addAll([statusDisposer]);
+      controller.loadPayments();
     });
   }
 
@@ -57,20 +60,25 @@ class _PaymentTypePageState extends State<PaymentTypePage>
           const SizedBox(
             height: 50,
           ),
-          Expanded(
-            child: GridView.builder(
-              itemCount: 10,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                mainAxisExtent: 120,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 10,
-                maxCrossAxisExtent: 680,
-              ),
-              itemBuilder: (context, index) {
-                return const PaymentTypeItem();
-              },
-            ),
-          ),
+          Expanded(child: Observer(
+            builder: (_) {
+              return GridView.builder(
+                itemCount: controller.paymentTypes.length,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  mainAxisExtent: 120,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 10,
+                  maxCrossAxisExtent: 680,
+                ),
+                itemBuilder: (context, index) {
+                  final paymentTypeModel = controller.paymentTypes[index];
+                  return PaymentTypeItem(
+                    model: paymentTypeModel,
+                  );
+                },
+              );
+            },
+          )),
         ],
       ),
     );
