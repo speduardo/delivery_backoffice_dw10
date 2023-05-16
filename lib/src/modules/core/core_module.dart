@@ -7,6 +7,7 @@ import '../../repositories/payment_type/payment_type_repository.dart';
 import '../../repositories/payment_type/payment_type_repository_impl.dart';
 
 class CoreModule extends Module {
+  @override
   List<Bind> get binds => [
         Bind.lazySingleton<SessisonStorage>(
           (i) => SesisonStorageImpl(),

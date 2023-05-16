@@ -31,7 +31,7 @@ class ThemeConfig {
       fillColor: Colors.white,
       filled: true,
       isDense: true,
-      contentPadding: EdgeInsets.all(20),
+      contentPadding: const EdgeInsets.all(20),
       border: _defaultInputBorder,
       enabledBorder: _defaultInputBorder,
       focusedBorder: _defaultInputBorder,
