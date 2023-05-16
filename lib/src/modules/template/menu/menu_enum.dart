@@ -6,7 +6,7 @@ enum Menu {
     'Administrar Formas de Pagamento',
   ),
   products(
-    '/product/',
+    '/products/',
     'product_icon.png',
     'product_icon_selected.png',
     'Administrar Produtos',
